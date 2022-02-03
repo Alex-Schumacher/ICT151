@@ -53,6 +53,7 @@ $(function (){
             },
             password: {
                 required: "Ce champ est requis",
+                PWCHECK: "Le mot doit contenir un chiffre, une majuscule, une minuscule et un caractère spécial"
 
             },
             password_conf: {
@@ -67,6 +68,21 @@ $(function (){
         },
         submitHandler: function(form){
             console.log("formulaire envoyé");
+            var news_letter = 0;
+            if($("#news_letter").is(":checked")){
+                news_letter = 1;
+            }
+            $.post(
+                "./json/inscription.json.php",
+                {
+                    nom_per: $("#nom_per").val(),
+                    prenom_per: $("#prenom_per").val(),
+                    email_per: $("#email_per").val(),
+                    password: $("#password").val(),
+                    news_letter_per: news_letter,
+                }
+            )
+
             }
         }
     );

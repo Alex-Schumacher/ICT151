@@ -58,7 +58,7 @@ $(function (){
             },
             password_conf: {
                 equalTo: "Mots de passe non-identique",
-                required: "Veuillez saisir le mot de passe ue seconde fois"
+                required: "Veuillez saisir le mot de passe une seconde fois"
             },
             password: {
                 required: "Mots de passe non-identique",
@@ -80,6 +80,24 @@ $(function (){
                     email_per: $("#email_per").val(),
                     password: $("#password").val(),
                     news_letter_per: news_letter,
+                },
+                function result(data,status){
+                  $("#alert .message").html(data.message.texte);
+                  $("#alert").attr("class","alert");
+                  $("#alert").addClass("alert-"+data.message.type);
+                  $("#alert").css("display","block");
+                  /*switch (data.reponse){
+                      case true:
+                          $("#alert").css("background-color","greenyellow")
+                          break;
+                      case false:
+                          $("#alert").css("background-color","red")
+                          break;
+                  }
+                  */
+
+
+
                 }
             )
 

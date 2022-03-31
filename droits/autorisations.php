@@ -3,7 +3,7 @@ require "../config/config.inc.php";
 require WAY."../includes/head.inc.php";
 
 ?>
-<script src="./js/autorisation.js"></script>
+
 <div class="row">
     <div class="header">
         <h3>Autorisations</h3>
@@ -40,6 +40,14 @@ require WAY."../includes/head.inc.php";
             <textarea  type="text" rows="3" class="form-control" id="desc_aut" name="desc_aut" placeholder="Description de l'autorisation pour l'admin"></textarea>
         </div>
     </div>
+    <div class="form-group row">
+        <label for="ut_desc_aut" class="col-sm-2 col-form-label">
+            Description de l'autorisation pour l'utilisateur
+        </label>
+        <div class="col-sm-10">
+            <textarea  type="text" rows="3" class="form-control" id="ut_desc_aut" name="ut_desc_aut" placeholder="Description de l'autorisation pour l'utilisateur"></textarea>
+        </div>
+    </div>
 <!---->
 <!--    <div class="form-group row">-->
 <!--        <label for="desc_aut_usr" class="col-sm-2 col-form-label">-->
@@ -66,3 +74,4 @@ require WAY."../includes/head.inc.php";
 
 
 </div>
+    <script src="./js/autorisation.js"></script>

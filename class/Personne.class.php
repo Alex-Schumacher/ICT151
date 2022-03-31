@@ -1,24 +1,20 @@
 <?php
-    Class Personne{
-        private $id;
+    Class Personne EXTENDS Projet{
+        private $id_per;
         private $nom;
         private $prenom;
         private $email;
         private $password;
         private $news_letter;
-        private $pdo;
+
 
 
         public function __construct($id = null){
-            $this->pdo = new PDO('mysql:dbname='.BASE_NAME.';host='.SQL_HOST,
-                        SQL_USER,
-                        SQL_PASSWORD,
-                        array(
-                            PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-                            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC));
+
+            parent::__construct();
 
             if($id){
-                $this->set_id($id);
+                $this->set_id_per($id);
                 $this->init();
             }
         }
@@ -34,7 +30,7 @@
                 $stat = $this->pdo->prepare($query);
 
                 $args = array();
-                $args[":id_per"]  = $this->get_id();
+                $args[":id_per"]  = $this->get_id_per();
 
                 $stat->execute($args);
 
@@ -165,18 +161,39 @@
             $this -> set_password(password_hash($password,PASSWORD_DEFAULT));
         }
 
+        /*
+        public function __toString(){
+            $str = "\n<pre>\n";
+            foreach($this as $key => $val){
+                if(key != "pdo"){
+                    $str .= "\t" .$key;
+                    $len_key = strlen($key);
+                    for ($i = strlen($key);$i<20; $i++){
+                        $str ."&nbsp;";
+                    }
+                    $str .= "=>&nbsp;&nbsp;&nbsp;" $val ."\n";
+                }
+            }
+
+        }
+        */
 
         public function __toString(){
-            $str = "<pre>";
-            $str .= "\nid = ".$this-> get_id();
-            $str .= "\nnom = ".$this-> get_nom();
-            $str .= "\nprenom = ".$this-> get_prenom();
-            $str .= "\nemail = ".$this-> get_email();
-            $str .= "\npassword = ".$this-> get_password();
-            $str .= "\nnews_letter = ".$this-> get_news_letter();
-            $str .= "</pre>";
+            $str = "\n<pre>\n";
+            foreach($this AS $key => $val){
+                if($key != "pdo"){
+                    $str .= "\t".$key;
+                    $lengh_key = strlen($key);
+                    for($i=strlen($key);$i<20;$i++){
+                        $str .= "&nbsp;";
+                    }
+                    $str .= "=>&nbsp;&nbsp;&nbsp;".$val."\n";
+                }
+            }
+            $str .= "\n</pre>";
             return $str;
         }
+
 
         /**
          * set la propriété de la classe
@@ -193,17 +210,17 @@
         /**
          * @return mixed
          */
-        public function get_id()
+        public function get_id_per()
         {
-            return $this->id;
+            return $this->id_per;
         }
 
         /**
          * @param mixed $id
          */
-        public function set_id($id)
+        public function set_id_per($id)
         {
-            $this->id = $id;
+            $this->id_per = $id;
         }
 
         /**

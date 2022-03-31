@@ -1,20 +1,15 @@
 <?php
     Class Autorisation
     {
-        private $id;
+        private $id_aut;
         private $nom;
         private $code;
         private $desc;
-        private $pdo;
+
 
         public function __construct($id = null)
         {
-            $this->pdo = new PDO('mysql:dbname=' . BASE_NAME . ';host=' . SQL_HOST,
-                SQL_USER,
-                SQL_PASSWORD,
-                array(
-                    PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8',
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC));
+            parent::__construct();
         }
 
         public function check_autorisation($code)
@@ -62,12 +57,18 @@
             }
         }
         public function __toString(){
-            $str = "<pre>";
-            $str .= "\nid = ".$this-> getId();
-            $str .= "\nnom = ".$this-> getNom();
-            $str .= "\ncode = ".$this-> getCode();
-            $str .= "\ndesc = ".$this-> getDesc();
-            $str .= "</pre>";
+            $str = "\n<pre>\n";
+            foreach($this AS $key => $val){
+                if($key != "pdo"){
+                    $str .= "\t".$key;
+                    $lengh_key = strlen($key);
+                    for($i=strlen($key);$i<20;$i++){
+                        $str .= "&nbsp;";
+                    }
+                    $str .= "=>&nbsp;&nbsp;&nbsp;".$val."\n";
+                }
+            }
+            $str .= "\n</pre>";
             return $str;
         }
 
@@ -76,17 +77,17 @@
         /**
          * @return mixed
          */
-        public function getId()
+        public function getIdAut()
         {
-            return $this->id;
+            return $this->id_aut;
         }
 
         /**
-         * @param mixed $id
+         * @param mixed $id_aut
          */
-        public function setId($id)
+        public function setIdAut($id_aut)
         {
-            $this->id = $id;
+            $this->id_aut = $id_aut;
         }
 
         /**

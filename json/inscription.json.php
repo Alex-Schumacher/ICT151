@@ -1,6 +1,6 @@
 <?php
 session_start();
-header('Content-type: application/json');
+//header('Content-type: application/json');
 
 require("./../config/config.inc.php");
 require(WAY."/includes/autoload.inc.php");

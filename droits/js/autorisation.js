@@ -14,10 +14,14 @@ $("#autorisation_form").validate(
             desc_aut: {
                 required: true,
                 minlength: 20
+            },
+            ut_desc_aut: {
+                required: true,
+                minlength: 20
             }
 
         },
-        message: {
+        messages: {
             nom_aut: {
                 required: "Ce champ est requis",
                 minlength: "le nom de l'autorisation doit être supérieur à 2"
@@ -31,6 +35,10 @@ $("#autorisation_form").validate(
             desc_aut: {
                 required: "Ce champ est requis",
                 minlength: "Ce champ doit comporter au moins 20 charactères"
+            },
+            ut_desc_aut: {
+                required: "Ce champ est requis",
+                minlength: "Ce champ doit comporter au moins 20 charactères"
             }
 
         },
@@ -42,8 +50,10 @@ $("#autorisation_form").validate(
                     nom_aut: $("#nom_aut").val(),
                     code_aut: $("#code_aut").val(),
                     desc_aut: $("#desc_aut").val(),
+                    ut_desc_aut: $("#ut_desc_aut").val(),
                 },
                 function result(data,status){
+                    console.log("------------"+data.message.texte);
                     $("#alert .message").html(data.message.texte);
                     $("#alert").attr("class","alert");
                     $("#alert").addClass("alert-"+data.message.type);
